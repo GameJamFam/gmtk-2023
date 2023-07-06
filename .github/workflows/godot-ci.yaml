@@ -4,6 +4,7 @@ on: push
 env:
   GODOT_VERSION: 4.0.0
   EXPORT_NAME: GJF-GMTK-23
+  PROJ_DIR: godot-project-dir
 
 jobs:
   export-windows:
@@ -26,6 +27,7 @@ jobs:
           godot --version
       - name: Windows Build
         run: |
+          cd $PROJ_DIR
           mkdir -v -p build/windows
           godot --headless -v --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
@@ -62,6 +64,7 @@ jobs:
           godot --version
       - name: Linux Build
         run: |
+          cd $PROJ_DIR
           mkdir -v -p build/linux
           godot --headless -v --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
@@ -98,6 +101,7 @@ jobs:
           godot --version
       - name: Web Build
         run: |
+          cd $PROJ_DIR
           mkdir -v -p build/web
           godot --headless -v --export-release "HTML5" build/web/index.html
       - name: Upload Artifact
