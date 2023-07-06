@@ -2,7 +2,7 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 4.0.0
+  GODOT_VERSION: 4.0.3
   EXPORT_NAME: GJF-GMTK-23
   PROJ_DIR: godot-project-dir
 
@@ -43,7 +43,7 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/windows
+          PACKAGE: godot-project-dir/build/windows
 
   export-linux:
     name: Linux Export
@@ -81,7 +81,7 @@ jobs:
           CHANNEL: linux
           ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/linux
+          PACKAGE: godot-project-dir/build/linux
 
   export-web:
     name: Web Export
@@ -111,7 +111,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: web
-          path: build/web
+          path: godot-project-dir/build/web
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
@@ -157,7 +157,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: mac
-          path: build/mac
+          path: godot-project-dir/build/mac
       - name: Butler Upload
         uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
