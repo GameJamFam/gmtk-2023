@@ -2,8 +2,8 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 3.3.4
-  EXPORT_NAME: PROJECT_NAME_HERE
+  GODOT_VERSION: 4.0.3
+  EXPORT_NAME: GJF-GMTK-23
 
 jobs:
   export-windows:
@@ -35,7 +35,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: windows
-          ITCH_GAME: GAME_NAME_HERE
+          ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build/windows
 
@@ -68,7 +68,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: linux
-          ITCH_GAME: GAME_NAME_HERE
+          ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build/linux
 
@@ -109,7 +109,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: web
-          ITCH_GAME: GAME_NAME_HERE
+          ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build/web
 
@@ -142,6 +142,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: mac
-          ITCH_GAME: GAME_NAME_HERE
+          ITCH_GAME: gjf-gmtk-23
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build/mac
