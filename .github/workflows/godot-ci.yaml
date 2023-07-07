@@ -17,7 +17,7 @@ jobs:
       - name: Prep Build Directory
         run: mkdir html5
       - name: Web Build
-        uses: dulvui/godot-html-export@v0.0.2
+        uses: glochtefeld/godot-html-export@v0.0.1
         with:
           working-directory: $WORKING_DIR
           godot-version: 4.0.3
