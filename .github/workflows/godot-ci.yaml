@@ -20,7 +20,7 @@ jobs:
         uses: dulvui/godot-html-export@v0.0.2
         with:
           working-directory: $WORKING_DIR
-          version: 4.0.3
+          godot-version: 4.0.3
       - name: Butler Upload
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
