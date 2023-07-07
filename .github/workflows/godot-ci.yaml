@@ -16,9 +16,6 @@ jobs:
           lfs: true
       - name: Prep Build Directory
         run: mkdir html5
-      - name: Verify Setup
-        run: |
-          godot --version
       - name: Web Build
         uses: dulvui/godot-html-export@v0.0.2
         with:
