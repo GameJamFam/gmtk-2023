@@ -1,169 +1,38 @@
-name: "godot-ci export"
+name: "Godot -> Itch.io Web"
 on: push
 
 env:
   GODOT_VERSION: 4.0.3
-  EXPORT_NAME: godot-project-dir
+  WORKING_DIR: gjf-gmtk-23
 
 jobs:
-  export-windows:
-    name: Windows Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:3.3.4
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Gavinsanity
-        run: |
-          pwd
-          ls -al
-      - uses: chickensoft-games/setup-godot@v1
-        name: Setup Godot
-        with:
-          version: 4.0.3
-          use-dotnet: false
-      - name: Verify Setup
-        run: |
-          godot --version
-      - name: Windows Build
-        run: |
-          cd $EXPORT_NAME
-          mkdir -v -p build/windows
-          godot --headless -v --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: windows
-          path: $EXPORT_NAME/build/windows
-      - name: Butler Upload
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.3
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
-          ITCH_GAME: gjf-gmtk-23
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/windows
-
-  export-linux:
-    name: Linux Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:3.3.4
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-      - uses: chickensoft-games/setup-godot@v1
-        name: Setup Godot
-        with:
-          version: 4.0.3
-          use-dotnet: false
-      - name: Verify Setup
-        run: |
-          godot --version
-      - name: Linux Build
-        run: |
-          cd $EXPORT_NAME
-          mkdir -v -p build/linux
-          godot --headless -v --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
-          cd ..
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: linux
-          path: $EXPORT_NAME/build/linux
-      - name: Butler Upload
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.3
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: linux
-          ITCH_GAME: gjf-gmtk-23
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/linux
-
   export-web:
     name: Web Export
     runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:3.3.4
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
+      - name: Prep Build Directory
+        run: mkdir html5
       - uses: chickensoft-games/setup-godot@v1
         name: Setup Godot
         with:
-          version: 4.0.3
+          version: $GODOT_VERSION
           use-dotnet: false
       - name: Verify Setup
         run: |
           godot --version
       - name: Web Build
-        run: |
-          cd $EXPORT_NAME
-          mkdir -v -p build/web
-          godot --headless -v --export-release "Web" build/web/index.html
-          cd ..
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: dulvui/godot-html-export@v0.0.2
         with:
-          name: web
-          path: $EXPORT_NAME/build/web
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
-      #- name: Deploy to GitHub Pages 🚀
-        #uses: JamesIves/github-pages-deploy-action@releases/v4
-        #with:
-          #branch: gh-pages # The branch the action should deploy to.
-          #          folder: build/web # The folder the action should deploy.
+          working-directory: $WORKING_DIR
       - name: Butler Upload
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.3
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: web
-          ITCH_GAME: gjf-gmtk-23
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/web
-
-  export-mac:
-    name: Mac Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:3.3.4
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-          lfs: true
-      - uses: chickensoft-games/setup-godot@v1
-        name: Setup Godot
-        with:
-          version: 4.0.3
-          use-dotnet: false
-      - name: Verify Setup
-        run: |
-          godot --version
-      - name: Mac Build
-        run: |
-          cd $EXPORT_NAME
-          mkdir -v -p build/mac
-          godot --headless -v --export-release "Mac OS" build/mac/$EXPORT_NAME.zip
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: mac
-          path: $EXPORT_NAME/build/mac
-      - name: Butler Upload
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.3
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: mac
-          ITCH_GAME: gjf-gmtk-23
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build/mac
+          working-directory: html5
+          api-key: ${{ secrets.ITCH_IO_API_KEY }}
+          user: ${{ secrets.ITCH_USER }}
+          game: gjf-gmtk-23
+          channel: html5
