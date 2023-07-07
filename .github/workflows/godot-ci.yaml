@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Gavinsanity
         run:
-            pwd
-            ls -al
             ls -al *
       - name: Checkout
         uses: actions/checkout@v2
