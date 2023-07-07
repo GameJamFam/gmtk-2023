@@ -3,8 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 4.0.3
-  EXPORT_NAME: GJF-GMTK-23
-  PROJ_DIR: godot-project-dir
+  EXPORT_NAME: godot-project-dir
 
 jobs:
   export-windows:
@@ -31,15 +30,14 @@ jobs:
           godot --version
       - name: Windows Build
         run: |
-          cd $PROJ_DIR
+          cd $EXPORT_NAME
           mkdir -v -p build/windows
           godot --headless -v --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
-          cd ..
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: windows
-          path: $PROJ_DIR/build/windows
+          path: $EXPORT_NAME/build/windows
       - name: Butler Upload
         uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
@@ -69,7 +67,7 @@ jobs:
           godot --version
       - name: Linux Build
         run: |
-          cd $PROJ_DIR
+          cd $EXPORT_NAME
           mkdir -v -p build/linux
           godot --headless -v --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
           cd ..
@@ -77,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: linux
-          path: $PROJ_DIR/build/linux
+          path: $EXPORT_NAME/build/linux
       - name: Butler Upload
         uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
@@ -107,7 +105,7 @@ jobs:
           godot --version
       - name: Web Build
         run: |
-          cd $PROJ_DIR
+          cd $EXPORT_NAME
           mkdir -v -p build/web
           godot --headless -v --export-release "Web" build/web/index.html
           cd ..
@@ -115,15 +113,15 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: web
-          path: $PROJ_DIR/build/web
+          path: $EXPORT_NAME/build/web
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+      #- name: Deploy to GitHub Pages 🚀
+        #uses: JamesIves/github-pages-deploy-action@releases/v4
+        #with:
+          #branch: gh-pages # The branch the action should deploy to.
+          #          folder: build/web # The folder the action should deploy.
       - name: Butler Upload
         uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
@@ -153,14 +151,14 @@ jobs:
           godot --version
       - name: Mac Build
         run: |
-          cd $PROJ_DIR
+          cd $EXPORT_NAME
           mkdir -v -p build/mac
           godot --headless -v --export-release "Mac OS" build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: mac
-          path: $PROJ_DIR/build/mac
+          path: $EXPORT_NAME/build/mac
       - name: Butler Upload
         uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
