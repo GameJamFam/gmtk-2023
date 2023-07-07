@@ -16,11 +16,6 @@ jobs:
           lfs: true
       - name: Prep Build Directory
         run: mkdir html5
-      - uses: chickensoft-games/setup-godot@v1
-        name: Setup Godot
-        with:
-          version: $GODOT_VERSION
-          use-dotnet: false
       - name: Verify Setup
         run: |
           godot --version
