@@ -63,7 +63,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
-text = "GMTK 23"
+text = "SNAKES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -83,7 +83,6 @@ size_flags_vertical = 3
 text = "Credits"
 
 [node name="Controls" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,18 +131,26 @@ size_flags_vertical = 3
 text = "Movement:
  - Up: W | Up Arrow | Dpad Up
  - Down: S | Down Arrow | Dpad Down
- - Hit Note: Space | XBox \"A\""
+ - Left: A | Left Arrow | Dpad Left
+ - Right: D | Right Arrow | Dpad Right"
 
 [node name="Title3" type="Label" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Move between the train tracks to hit the notes in time with the music. The closer the pilot (the front tip of the train) is to the center of the note, the higher the score."
+text = "Move around the screen to avoid the snake(s). 
+Earn bonus points for tricking the snakes into running into themselves! 
+Gather powerups to gain one-time abilities to help you evade the snakes."
 autowrap_mode = 2
 
 [node name="Title4" type="Label" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Avoid obstacles to maintain your streak! When your streak meter is filled, you'll become temporarily invincible and all points will be multiplied."
+text = "Powerups
+ - Speed Boost: Increase your agility! 
+ - Sleepy Snakes: Slow down oncoming snakes! (optional)
+ - Ghostly Apple: Move through walls and snakes, invincibility 
+ - Multi-Apple: Control multiple apples! 
+ - Caramel Coating: A one-time get-out-of-death-free card! (optional)"
 autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
@@ -152,6 +159,7 @@ size_flags_vertical = 3
 text = "Back"
 
 [node name="Credits" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,18 +205,12 @@ vertical_alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Credits/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "Music, Sound, and Track Layout by [b]HeyV[/b]
+text = "Music and Sound by [b]HeyV[/b]
 [url=https://example.com]Link Example[/url]
 
-Placeholder Art by [b]Gavin Lochtefeld[/b]
-Github [url=https://example.com]@glochtefeld[/url]
+Programming by [b]Gavin Lochtefeld[/b]  ([url=https://example.com]@glochtefeld[/url]) and [b]Will Jones[/b]
 
-The Gameplay Design, Story, and all aspects of this work have been a collaborative effort between the entire GameJamFam team:
-
-Gavin Lochtefeld
-HeyV
-KryingKraken
-Will Jones
+All aspects of this work have been a collaborative effort between the entire GameJamFam team.
 
 The source code for this project may be found on [url=\"https://github.com/gamejamfam/gmtk-2023\"]Github[/url]."
 fit_content = true
