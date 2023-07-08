@@ -19,10 +19,10 @@ jobs:
       - name: Prep Build Directory
         run: mkdir html5
       - name: Web Build
-        uses: glochtefeld/godot-html-export@v0.0.2
-        with:
-          working-directory: $WORKING_DIR
-          godot-version: 4.1
+        run: |
+          mkdir -v -p build/web
+          cd godot-project-dir
+          godot -v --headless --export-release "WEB" ../build/web/index.html
       - name: Butler Upload
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
