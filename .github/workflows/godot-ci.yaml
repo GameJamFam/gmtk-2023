@@ -2,13 +2,15 @@ name: "Godot -> Itch.io Web"
 on: push
 
 env:
-  GODOT_VERSION: 4.0.3
+  GODOT_VERSION: 4.1
   WORKING_DIR: gjf-gmtk-23
 
 jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,7 +22,7 @@ jobs:
         uses: glochtefeld/godot-html-export@v0.0.2
         with:
           working-directory: $WORKING_DIR
-          godot-version: 4.0.3
+          godot-version: 4.1
       - name: Butler Upload
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
