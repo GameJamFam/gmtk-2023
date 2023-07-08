@@ -21,7 +21,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          cd godot-project-dir
+          cd gjf-gmtk-23
           godot -v --headless --export-release "WEB" ../build/web/index.html
       - name: Butler Upload
         uses: dulvui/itchio-butler-upload@v0.0.1
