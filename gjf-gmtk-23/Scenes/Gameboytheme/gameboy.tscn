@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d6g7sfn1tpge"]
+
+[ext_resource type="Shader" path="res://Scenes/Gameboytheme/gameboy.gdshader" id="1_70nuy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnx4w"]
+shader = ExtResource("1_70nuy")
+
+[node name="ColorRect" type="ColorRect"]
+material = SubResource("ShaderMaterial_nnx4w")
+offset_left = -1.0
+offset_top = -12.0
+offset_right = 1296.0
+offset_bottom = 746.0
