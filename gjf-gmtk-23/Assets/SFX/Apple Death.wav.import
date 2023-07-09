@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgig5yfwlhqiq"
+path="res://.godot/imported/Apple Death.wav-1df7a63db5e04c649e2c44fe1f4156c5.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Apple Death.wav"
+dest_files=["res://.godot/imported/Apple Death.wav-1df7a63db5e04c649e2c44fe1f4156c5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

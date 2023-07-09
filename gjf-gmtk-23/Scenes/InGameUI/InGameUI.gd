@@ -35,3 +35,11 @@ func restart_game():
 
 func mainmenu():
 	emit_signal("main_menu")
+
+signal play_hover
+signal play_click
+func hover_sound():
+	emit_signal("play_hover")
+
+func click_sound():
+	emit_signal("play_click")

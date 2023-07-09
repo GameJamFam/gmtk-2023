@@ -136,6 +136,11 @@ layout_mode = 2
 text = "Restart"
 
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("3_8xa5m")]
+mouse_filter = 2
 
+[connection signal="button_down" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/MainMenu" to="." method="click_sound"]
 [connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/MainMenu" to="." method="mainmenu"]
+[connection signal="mouse_entered" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/MainMenu" to="." method="hover_sound"]
+[connection signal="button_down" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/Restart" to="." method="click_sound"]
 [connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/Restart" to="." method="restart_game"]
+[connection signal="mouse_entered" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/Restart" to="." method="hover_sound"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://12sro728l56v"]
+[gd_scene load_steps=9 format=3 uid="uid://12sro728l56v"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_f7ccb"]
-[ext_resource type="PackedScene" uid="uid://bchxwly7efe7t" path="res://Scenes/MainMenu/Background.tscn" id="2_p1vjr"]
-[ext_resource type="Texture2D" uid="uid://dp503f7d7vfw5" path="res://Assets/Scales halftone big 5.png" id="2_rwot8"]
+[ext_resource type="PackedScene" uid="uid://b5f7i1bau07wg" path="res://Scenes/MainMenu/Background.tscn" id="2_p1vjr"]
 [ext_resource type="PackedScene" uid="uid://d6g7sfn1tpge" path="res://Scenes/Gameboytheme/gameboy.tscn" id="3_co5or"]
 [ext_resource type="Theme" uid="uid://dtsvg2rsksn1r" path="res://Scenes/Gameboytheme/ui_theme.tres" id="4_qb4dw"]
+[ext_resource type="AudioStream" uid="uid://3l7q6bem1ibd" path="res://Assets/SFX/Snake-Title-Theme.ogg" id="5_1p51u"]
+[ext_resource type="AudioStream" uid="uid://bed3wmassvnts" path="res://Assets/SFX/Button-Hover.ogg" id="6_isv1b"]
+[ext_resource type="AudioStream" uid="uid://b85axobvufbnh" path="res://Assets/SFX/Button-Click.ogg" id="7_pdq6g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rac6e"]
 font_size = 86
@@ -15,7 +17,6 @@ script = ExtResource("1_f7ccb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScalesHalftoneBig5" parent="CanvasLayer" instance=ExtResource("2_p1vjr")]
-texture = ExtResource("2_rwot8")
 
 [node name="Main" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -217,9 +218,29 @@ text = "Back"
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("3_co5or")]
 mouse_filter = 2
 
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1p51u")
+autoplay = true
+
+[node name="HoverFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_isv1b")
+
+[node name="ClickFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_pdq6g")
+
+[connection signal="button_down" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="click_button"]
+[connection signal="mouse_entered" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="hover_button"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="start_game"]
+[connection signal="button_down" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ControlsButton" to="." method="click_button"]
+[connection signal="mouse_entered" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ControlsButton" to="." method="hover_button"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ControlsButton" to="." method="show_controls"]
+[connection signal="button_down" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="click_button"]
+[connection signal="mouse_entered" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="hover_button"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="show_credits"]
+[connection signal="button_down" from="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="click_button"]
+[connection signal="mouse_entered" from="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="hover_button"]
 [connection signal="pressed" from="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="back_to_main"]
 [connection signal="meta_clicked" from="CanvasLayer/Credits/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/RichTextLabel" to="." method="link_clicked"]
+[connection signal="button_down" from="CanvasLayer/Credits/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="click_button"]
+[connection signal="mouse_entered" from="CanvasLayer/Credits/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="hover_button"]
 [connection signal="pressed" from="CanvasLayer/Credits/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BackButton" to="." method="back_to_main"]

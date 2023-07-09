@@ -234,6 +234,8 @@ func ouroboros():
 
 @onready var dead = false
 func die(points=false):
+	if points:
+		get_parent().get_parent().add_points(50)
 	clear_snake()
 	dead = true
 	await get_tree().create_timer(1).timeout

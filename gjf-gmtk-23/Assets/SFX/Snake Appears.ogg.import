@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvforr1pnsa1k"
+path="res://.godot/imported/Snake Appears.ogg-d0cf8bc51a10c550b0192008a322dd0b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Snake Appears.ogg"
+dest_files=["res://.godot/imported/Snake Appears.ogg-d0cf8bc51a10c550b0192008a322dd0b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

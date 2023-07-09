@@ -29,3 +29,9 @@ func show_credits():
 # Credits link handler
 func link_clicked(href):
 	OS.shell_open(href)
+
+func hover_button():
+	$HoverFX.play()
+
+func click_button():
+	$ClickFX.play()

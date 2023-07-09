@@ -4,6 +4,7 @@ const APPLE=0
 const SNAKE=1
 @export var snake_instance: PackedScene
 const WALL=2
+@export var sfx_apple_eaten: AudioStream
 @export var sfx_game_over: AudioStream
 @export var sfx_ouroboros: AudioStream
 @export var sfx_power_up: AudioStream
@@ -15,8 +16,10 @@ const WALL=2
 @export var sfx_snake_added: AudioStream
 @export var sfx_wall_appears: AudioStream
 @export var sfx_board_transition: AudioStream
+@export var sfx_round_countdown: AudioStream
 
 @onready var sfx_paths = {
+	apple_eaten=sfx_apple_eaten,
 	game_over=sfx_game_over,
 	ouroboros=sfx_ouroboros,
 	power_up=sfx_power_up,
@@ -27,7 +30,8 @@ const WALL=2
 	level_end=sfx_level_end,
 	snake_added=sfx_snake_added,
 	wall_appears=sfx_wall_appears,
-	board_transition=sfx_board_transition
+	board_transition=sfx_board_transition,
+	round_countdown=sfx_round_countdown
 }
 
 func play_sfx(key):
@@ -114,6 +118,7 @@ func random_rotation():
 	return (randi() % 3) * -90
 
 func spawn_snake():
+	play_sfx("snake_added")
 	var snake = snake_instance.instantiate()
 	snake.snake_num = $Snakes.get_child_count()
 	$Snakes.add_child(snake)
@@ -125,7 +130,7 @@ func spawn_snake():
 
 @onready var game_paused = false
 func apple_eaten():
-	print("eaten")
+	play_sfx("apple_eaten")
 	$Apple.die()
 	pause_game()
 
@@ -137,6 +142,7 @@ func pause_game():
 
 func destroy_snake(having_block, from_id):
 	print("snake homicide")
+	play_sfx("ouroboros")
 	var snakes = $Snakes.get_children()
 	for snake_idx in snakes.size():
 		var snake = snakes[snake_idx]
@@ -194,24 +200,30 @@ func _on_apple_game_over():
 
 
 @onready var points = 0
+func add_points(num):
+	points += num
+
 @onready var round = 1
 func end_round_early():
 	var extra_points = floor($RoundClock.time_left)
 	$RoundClock.stop()
 	points += extra_points
 	round_end_actions()
+	play_sfx("level_end")
 	
 func round_end_actions():
+	play_sfx("board_transition")
 	# Note: For a fun effect where the blocks just keep filling the screen,
 	# Don't clear them
 	if randi() % 3 != 0:
 		clear_walls()
-	$InGameUI.update_title("SNAKE")
+	#$InGameUI.update_title("SNAKE")
 	$RoundClock.wait_time = 45.0
 	round += 1
 	var next_round = randi() % 3
 	var walls = (randi() % 5) + 2
 	generate_walls(walls)
+	play_sfx("wall_appears")
 	
 	var snakes = (randi() % 3) + 1
 	for sn in snakes:
@@ -222,17 +234,26 @@ func _on_round_clock_timeout():
 	pause_game()
 	round_end_actions()
 
+@onready var started_countdown = false
+
 func _process(_delta):
 	$InGameUI.update_score(points)
 	$InGameUI.update_timer(str(floor($RoundClock.time_left)))
+	if $RoundClock.time_left == 5 and not started_countdown:
+		play_sfx("round_countdown")
 	$InGameUI.update_lives($Apple.lives)
 	$InGameUI.update_roundct(round)
-
-
-	
 
 func start_new_game():
 	get_tree().reload_current_scene()
 
 func go_to_main():
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
+
+
+func click_button():
+	$ClickFX.play()
+
+
+func hover_button():
+	$HoverFX.play()
