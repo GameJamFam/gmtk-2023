@@ -123,28 +123,16 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Movement:
- - Up: W | Up Arrow | Dpad Up
- - Down: S | Down Arrow | Dpad Down
- - Left: A | Left Arrow | Dpad Left
- - Right: D | Right Arrow | Dpad Right"
+ - Up: W | Up Arrow 
+ - Down: S | Down Arrow
+ - Left: A | Left Arrow
+ - Right: D | Right Arrow"
 
 [node name="Title3" type="Label" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Move around the screen to avoid the snake(s). 
-Earn bonus points for tricking the snakes into running into themselves! 
-Gather powerups to gain one-time abilities to help you evade the snakes."
-autowrap_mode = 2
-
-[node name="Title4" type="Label" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Powerups
- - Speed Boost: Increase your agility! 
- - Sleepy Snakes: Slow down oncoming snakes! (optional)
- - Ghostly Apple: Move through walls and snakes, invincibility 
- - Multi-Apple: Control multiple apples! 
- - Caramel Coating: A one-time get-out-of-death-free card! (optional)"
+Earn bonus points for tricking the snakes into running into themselves! "
 autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Controls/CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
