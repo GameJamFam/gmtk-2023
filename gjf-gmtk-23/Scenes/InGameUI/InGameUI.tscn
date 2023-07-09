@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3 uid="uid://cunwdnl2131qe"]
+
+[ext_resource type="Script" path="res://Scenes/InGameUI/InGameUI.gd" id="1_an7qr"]
+
+[node name="InGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_an7qr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 86.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScoreBox" type="PanelContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7.045, 2.635)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/ScoreBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/ScoreBox/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "SCORE"
+
+[node name="Score" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/ScoreBox/VBoxContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="TimerBox" type="PanelContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7.045, 2.635)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/TimerBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/TimerBox/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "TIMER"
+
+[node name="Timer" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/TimerBox/VBoxContainer"]
+layout_mode = 2
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="LivesBox" type="PanelContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7.045, 2.635)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/LivesBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/LivesBox/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "LIVES"
+
+[node name="Lives" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/LivesBox/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="RoundNumBox" type="PanelContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7.045, 2.635)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/RoundNumBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/RoundNumBox/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "ROUND #"
+
+[node name="Rounds" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/RoundNumBox/VBoxContainer"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "SNAKE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GameOver" type="PanelContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/GameOver"]
+layout_mode = 2
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Restart" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/MainMenu" to="." method="mainmenu"]
+[connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/Restart" to="." method="restart_game"]

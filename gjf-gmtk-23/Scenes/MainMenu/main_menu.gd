@@ -10,7 +10,7 @@ func _ready():
 	credits.visible = false
 
 func start_game():
-	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainGame/MainGame.tscn")
 
 # Return to the main menu from any submenu.
 func back_to_main():
