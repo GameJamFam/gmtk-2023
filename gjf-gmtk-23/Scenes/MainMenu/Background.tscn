@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bchxwly7efe7t"]
+
+[ext_resource type="Texture2D" uid="uid://cpggex0fs1q4m" path="res://Assets/UI/Scales halftone big 5.png" id="1_fsvsi"]
+
+[node name="ScalesHalftoneBig5" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.603922)
+texture_repeat = 3
+position = Vector2(640, 360)
+scale = Vector2(5.092, 2.472)
+texture = ExtResource("1_fsvsi")
+region_enabled = true
+region_rect = Rect2(0, -200, 272, 344)

@@ -78,6 +78,7 @@ wait_time = 45.0
 autostart = true
 
 [node name="InGameUI" parent="." instance=ExtResource("7_a3lsh")]
+visible = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 

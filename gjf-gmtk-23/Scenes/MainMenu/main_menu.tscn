@@ -1,34 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://12sro728l56v"]
+[gd_scene load_steps=7 format=3 uid="uid://12sro728l56v"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_f7ccb"]
+[ext_resource type="PackedScene" uid="uid://bchxwly7efe7t" path="res://Scenes/MainMenu/Background.tscn" id="2_p1vjr"]
+[ext_resource type="Texture2D" uid="uid://dp503f7d7vfw5" path="res://Assets/Scales halftone big 5.png" id="2_rwot8"]
+[ext_resource type="PackedScene" uid="uid://d6g7sfn1tpge" path="res://Scenes/Gameboytheme/gameboy.tscn" id="3_co5or"]
+[ext_resource type="Theme" uid="uid://dtsvg2rsksn1r" path="res://Scenes/Gameboytheme/ui_theme.tres" id="4_qb4dw"]
 
-[sub_resource type="Gradient" id="Gradient_3bx0p"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxrln"]
-gradient = SubResource("Gradient_3bx0p")
-width = 1024
-height = 1024
-fill_from = Vector2(0.769231, 0.92735)
+[sub_resource type="LabelSettings" id="LabelSettings_rac6e"]
+font_size = 86
 
 [node name="MainMenuElements" type="Node"]
 script = ExtResource("1_f7ccb")
 
-[node name="Background" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -148.0
-offset_right = 2.0
-offset_bottom = 156.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_nxrln")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ScalesHalftoneBig5" parent="CanvasLayer" instance=ExtResource("2_p1vjr")]
+texture = ExtResource("2_rwot8")
+
 [node name="Main" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_qb4dw")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Main/CenterContainer"]
 custom_minimum_size = Vector2(512, 256)
@@ -63,7 +53,8 @@ theme_override_constants/separation = 8
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
-text = "SNAKES"
+text = "ssSNAKESss"
+label_settings = SubResource("LabelSettings_rac6e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -83,6 +74,7 @@ size_flags_vertical = 3
 text = "Credits"
 
 [node name="Controls" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,6 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_qb4dw")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Controls/CenterContainer"]
 custom_minimum_size = Vector2(512, 256)
@@ -166,6 +159,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_qb4dw")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Credits"]
 layout_mode = 1
@@ -219,6 +213,9 @@ fit_content = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Back"
+
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource("3_co5or")]
+mouse_filter = 2
 
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="start_game"]
 [connection signal="pressed" from="CanvasLayer/Main/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ControlsButton" to="." method="show_controls"]

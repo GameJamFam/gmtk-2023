@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cunwdnl2131qe"]
+[gd_scene load_steps=4 format=3 uid="uid://cunwdnl2131qe"]
 
 [ext_resource type="Script" path="res://Scenes/InGameUI/InGameUI.gd" id="1_an7qr"]
+[ext_resource type="Theme" uid="uid://dtsvg2rsksn1r" path="res://Scenes/Gameboytheme/ui_theme.tres" id="2_wethc"]
+[ext_resource type="PackedScene" uid="uid://d6g7sfn1tpge" path="res://Scenes/Gameboytheme/gameboy.tscn" id="3_8xa5m"]
 
 [node name="InGameUI" type="Control"]
 layout_mode = 3
@@ -18,6 +20,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 86.0
 grow_horizontal = 2
+theme = ExtResource("2_wethc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
@@ -131,6 +134,8 @@ text = "Main Menu"
 [node name="Restart" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
+
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource("3_8xa5m")]
 
 [connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/MainMenu" to="." method="mainmenu"]
 [connection signal="button_up" from="CanvasLayer/PanelContainer/HBoxContainer/GameOver/VBoxContainer/Restart" to="." method="restart_game"]
